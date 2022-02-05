@@ -5,11 +5,11 @@ const messageDisplay = document.querySelector('.message-container')
 let wordle
 
 const getWordle = () => {
-  fetch('http:\\localhost:8000/word')
+  fetch('http://localhost:8000/word')
     .then((response) => response.json())
     .then((json) => {
       console.log(json)
-      wordle = json.tiUpperCase()
+      wordle = json.toUpperCase()
     })
     .catch((err) => {
       console.log(err)
@@ -123,6 +123,16 @@ const checkRow = () => {
   const guess = guessRows[currentRow].join('')
   flipTile()
   if (currentTile > 4) {
+    fetch(`http://localhost:8000/check/?word=${guess}`)
+      .then((response) => response.json)
+      .then((json) => {
+        console.log('JSON: ', json)
+        if (json == 'Entry word not found') {
+          showMessage('Invalid word')
+          isGameOver = true
+        }
+      })
+
     if (wordle === guess) {
       showMessage('Awesome!!!')
       isGameOver = true
