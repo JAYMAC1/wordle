@@ -154,13 +154,13 @@ const flipTile = () => {
   guess.forEach((guess, index) => {
     if (guess.letter == wordle[index]) {
       guess.color = 'green-overlay'
-      checkWordle.replace(guess.letter, '')
+      checkWordle = checkWordle.replace(guess.letter, '')
     }
   })
 
   guess.forEach((guess) => {
     if (checkWordle.includes(guess.letter)) {
-      guess.color = 'green-overlay'
+      guess.color = 'yellow-overlay'
       checkWordle.replace(guess.letter, '')
     }
   })
@@ -174,16 +174,3 @@ const flipTile = () => {
     }, 500 * index)
   })
 }
-
-// const dataLetter = tile.getAttribute('data')
-// tile.classList.add('flip')
-// if (dataLetter == wordle[index]) {
-// 	tile.classList.add('green-overlay')
-// 	addColorToKey(dataLetter, 'green-overlay')
-// } else if (wordle.includes(dataLetter)) {
-// 	tile.classList.add('yellow-overlay')
-// 	addColorToKey(dataLetter, 'yellow-overlay')
-// } else {
-// 	tile.classList.add('grey-overlay')
-// 	addColorToKey(dataLetter, 'grey-overlay')
-// }
